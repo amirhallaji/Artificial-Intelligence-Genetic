@@ -22,8 +22,22 @@ def initializePopulation():
         initialPopulation.append(cols)
     return initialPopulation
 
+def calculateFitness(population: list):
+    fitnessList = []
+    for i in range(0, len(population)):
+        cols = [i]
+        fitness = population[i][2] - population[i][1]
+        cols.append(fitness)
+        fitnessList.append(cols)
+    return fitnessList
+
+
 
 if __name__ == '__main__':
+    pop = initializePopulation()
+    print(pop)
+    print(calculateFitness(pop))
+
     # listOfAll = []
     # firstAsset = input()
     # firstAsset = int(firstAsset)
