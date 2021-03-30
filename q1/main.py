@@ -41,6 +41,25 @@ def crossover(population: list):
         offsprings.append(cols)
     return offsprings
 
+def mutation(population: list):
+    """
+     since the problem is in Integer Representation,
+     I chose Creeping in mutation, which is adding a positive or negative number
+     with the probability of pm.
+    """
+    randomCreeps = []
+    for i in range(0, int(len(population)/5)):
+        randomCreeps.append(random.randint(-5, 5))
+
+    randomPositions = []
+    for i in range(0, int(len(population)/5)):
+        randomPositions.append(random.randint(0, int(len(population)/5)))
+
+    for i in range(0, len(randomPositions)):
+        population[i][1] += randomCreeps[randomPositions[i]]
+
+    return population
+
 
 
 if __name__ == '__main__':
@@ -50,6 +69,8 @@ if __name__ == '__main__':
     off = crossover(pop)
     print(off)
     print(len(off))
+    mute = mutation(off)
+    print(mute)
 
     # listOfAll = []
     # firstAsset = input()
