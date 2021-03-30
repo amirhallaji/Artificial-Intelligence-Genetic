@@ -31,12 +31,25 @@ def calculateFitness(population: list):
         fitnessList.append(cols)
     return fitnessList
 
+def crossover(population: list):
+    randomFather = random.sample(range(0, len(population)), len(population))
+    randomMother = random.sample(range(0, len(population)), len(population))
+
+    offsprings = []
+    for i in range(0, len(randomFather)):
+        cols = [i, population[randomFather[i]][1], population[randomMother[i]][2]]
+        offsprings.append(cols)
+    return offsprings
+
 
 
 if __name__ == '__main__':
     pop = initializePopulation()
     print(pop)
     print(calculateFitness(pop))
+    off = crossover(pop)
+    print(off)
+    print(len(off))
 
     # listOfAll = []
     # firstAsset = input()
