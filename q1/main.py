@@ -1,5 +1,8 @@
 import random
 
+initialMoney = None
+# maximumEfficiency = -initialMoney
+
 def calculateInitialPopulation(inputs: list):
     initialPopulation = []
     for i in range(0, len(inputs)):
@@ -14,44 +17,24 @@ def calculateInitialPopulation(inputs: list):
         initialPopulation.append(cols)
     return initialPopulation
 
-
-
-def initializePopulation():
-    initialPopulation = []
-
-    for i in range(0, 1000):
-        cols = [i]
-        price = random.randint(10, 1000)
-        cols.append(price)
-        value = random.randint(0, price)
-        cols.append(value)
-        initialPopulation.append(cols)
-    return initialPopulation
-
-def calculateFitness(population: list):
-    fitnessList = []
-    for i in range(0, len(population)):
-        cols = [i]
-        fitness = population[i][2] - population[i][1]
-        cols.append(fitness)
-        fitnessList.append(cols)
-    return fitnessList
+# ------------------------------------------
 
 def crossover(population: list):
     randomFather = random.sample(range(0, len(population)), len(population))
     randomMother = random.sample(range(0, len(population)), len(population))
 
-    offsprings = population[::]
+    offsprings = []
     for i in range(0, len(randomFather)):
         cols = [i, population[randomFather[i]][1], population[randomMother[i]][2]]
         offsprings.append(cols)
     return offsprings
+#--------------------------------------------
 
 def mutation(population: list):
     """
-     since the problem is in Integer Representation,
+     Since the representation of this genetic problem is Integer form,
      I chose Creeping in mutation, which is adding a positive or negative number
-     with the probability of pm.
+     with the probability of pm to a random population.
     """
     randomCreeps = []
     for i in range(0, int(len(population)/5)):
@@ -63,13 +46,19 @@ def mutation(population: list):
         population[randomPositions[i]][1] += randomCreeps[i]
 
     return population
-
+#---------------------------------------------
 def chooseSurvivals(population: list):
-    survivals = []
+    nextPopulation = []
+    currentDiversity = 0
     for i in range(0, len(population)):
-        if -10 < population[i][2] - population[i][1]  and population[i][2] <= population[i][1]:
-            survivals.append(population[i])
-    return survivals
+        if -10 < population[i][1] - population[i][2] < 10:
+            nextPopulation.append(i)
+            nextPopulation.append(population[i][1])
+            nextPopulation.append(population[i][2])
+        # currentDiversity += population[i][1] - population[i][2]
+    return nextPopulation
+
+#----------------------------------------------
 
 if __name__ == '__main__':
 
@@ -85,8 +74,14 @@ if __name__ == '__main__':
         listOfInputs.append(list(map(int, input().split())))
 
     print(listOfInputs)
+    pop = calculateInitialPopulation(listOfInputs)
+    for i in range(0, 5):
+        pop = crossover(pop)
+        pop = mutation(pop)
+        pop = chooseSurvivals(pop)
+    print(pop)
 
-    print(calculateInitialPopulation(listOfInputs))
+
 
 
 
