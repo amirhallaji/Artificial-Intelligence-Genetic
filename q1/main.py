@@ -16,8 +16,8 @@ def initializePopulation():
     for i in range(0, 1000):
         cols = [i]
         price = random.randint(10, 1000)
-        value = random.randint(10, 1000)
         cols.append(price)
+        value = random.randint(0, price)
         cols.append(value)
         initialPopulation.append(cols)
     return initialPopulation
@@ -35,7 +35,7 @@ def crossover(population: list):
     randomFather = random.sample(range(0, len(population)), len(population))
     randomMother = random.sample(range(0, len(population)), len(population))
 
-    offsprings = []
+    offsprings = population[::]
     for i in range(0, len(randomFather)):
         cols = [i, population[randomFather[i]][1], population[randomMother[i]][2]]
         offsprings.append(cols)
@@ -61,19 +61,18 @@ def mutation(population: list):
 def chooseSurvivals(population: list):
     survivals = []
     for i in range(0, len(population)):
-        if population[i][2] - population[i][1] <= -10:
+        if -10 < population[i][2] - population[i][1]  and population[i][2] <= population[i][1]:
             survivals.append(population[i])
     return survivals
 
 if __name__ == '__main__':
     pop = initializePopulation()
+
+    for i in range(0, 5):
+        pop = crossover(pop)
+        pop = mutation(pop)
+        pop = chooseSurvivals(pop)
     print(pop)
-    print(calculateFitness(pop))
-    off = crossover(pop)
-    print(off)
-    print(len(off))
-    mute = mutation(off)
-    print(mute)
 
     # listOfAll = []
     # firstAsset = input()
