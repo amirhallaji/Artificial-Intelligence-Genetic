@@ -1,4 +1,5 @@
 import random
+
 #
 # def calculateFinalValue(price: list):
 #     finalDetails = []
