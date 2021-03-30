@@ -51,9 +51,7 @@ def mutation(population: list):
     for i in range(0, int(len(population)/5)):
         randomCreeps.append(random.randint(-5, 5))
 
-    randomPositions = []
-    for i in range(0, int(len(population)/5)):
-        randomPositions.append(random.randint(0, int(len(population)/5)))
+    randomPositions = random.sample(range(0, int(len(population)/5)), int(len(population)/5))
 
     for i in range(0, len(randomPositions)):
         population[i][1] += randomCreeps[randomPositions[i]]
