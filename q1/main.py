@@ -54,11 +54,16 @@ def mutation(population: list):
     randomPositions = random.sample(range(0, int(len(population)/5)), int(len(population)/5))
 
     for i in range(0, len(randomPositions)):
-        population[i][1] += randomCreeps[randomPositions[i]]
+        population[randomPositions[i]][1] += randomCreeps[i]
 
     return population
 
-
+def chooseSurvivals(population: list):
+    survivals = []
+    for i in range(0, len(population)):
+        if population[i][2] - population[i][1] <= -10:
+            survivals.append(population[i])
+    return survivals
 
 if __name__ == '__main__':
     pop = initializePopulation()
