@@ -11,37 +11,45 @@ import random
 #     return finalDetails
 
 def initializePopulation():
+    initialPopulation = []
 
-
+    for i in range(0, 1000):
+        cols = [i]
+        price = random.randint(10, 1000)
+        value = random.randint(10, 1000)
+        cols.append(price)
+        cols.append(value)
+        initialPopulation.append(cols)
+    return initialPopulation
 
 
 if __name__ == '__main__':
-    listOfAll = []
-    firstAsset = input()
-    firstAsset = int(firstAsset)
-
-    carCount = input(int)
-    carCount = int(carCount)
-
-    for i in range(0, carCount):
-        cols = []
-        carPrice = input()
-        carPrice = int(carPrice)
-        cols.append(carPrice)
-
-        earlyValue = input()
-        earlyValue = int(earlyValue)
-        cols.append(earlyValue)
-
-        distance = input()
-        distance = int(distance)
-        cols.append(distance)
-
-        decreaseRate = input() # enter 0 if not wanted.
-        decreaseRate = int(decreaseRate)
-        cols.append(decreaseRate)
-
-        listOfAll.append(cols)
+    # listOfAll = []
+    # firstAsset = input()
+    # firstAsset = int(firstAsset)
+    #
+    # carCount = input(int)
+    # carCount = int(carCount)
+    #
+    # for i in range(0, carCount):
+    #     cols = []
+    #     carPrice = input()
+    #     carPrice = int(carPrice)
+    #     cols.append(carPrice)
+    #
+    #     earlyValue = input()
+    #     earlyValue = int(earlyValue)
+    #     cols.append(earlyValue)
+    #
+    #     distance = input()
+    #     distance = int(distance)
+    #     cols.append(distance)
+    #
+    #     decreaseRate = input() # enter 0 if not wanted.
+    #     decreaseRate = int(decreaseRate)
+    #     cols.append(decreaseRate)
+    #
+    #     listOfAll.append(cols)
 
 
 
