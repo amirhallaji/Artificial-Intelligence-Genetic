@@ -1,6 +1,8 @@
 import random
 
 initialMoney = None
+
+
 # maximumEfficiency = -initialMoney
 
 def calculateInitialPopulation(inputs: list):
@@ -17,18 +19,23 @@ def calculateInitialPopulation(inputs: list):
         initialPopulation.append(cols)
     return initialPopulation
 
+
 # ------------------------------------------
 
 def crossover(population: list):
     randomFather = random.sample(range(0, len(population)), len(population))
     randomMother = random.sample(range(0, len(population)), len(population))
+    print('pop: ', len(population))
+    print(len(randomFather), len(randomMother))
 
     offsprings = []
     for i in range(0, len(randomFather)):
         cols = [i, population[randomFather[i]][1], population[randomMother[i]][2]]
         offsprings.append(cols)
     return offsprings
-#--------------------------------------------
+
+
+# --------------------------------------------
 
 def mutation(population: list):
     """
@@ -37,28 +44,33 @@ def mutation(population: list):
      with the probability of pm to a random population.
     """
     randomCreeps = []
-    for i in range(0, int(len(population)/5)):
+    for i in range(0, int(len(population) / 5)):
         randomCreeps.append(random.randint(-5, 5))
 
-    randomPositions = random.sample(range(0, int(len(population)/5)), int(len(population)/5))
+    randomPositions = random.sample(range(0, int(len(population) / 5)), int(len(population) / 5))
 
     for i in range(0, len(randomPositions)):
         population[randomPositions[i]][1] += randomCreeps[i]
 
     return population
-#---------------------------------------------
-def chooseSurvivals(population: list):
-    nextPopulation = []
-    currentDiversity = 0
-    for i in range(0, len(population)):
-        if -10 < population[i][1] - population[i][2] < 10:
-            nextPopulation.append(i)
-            nextPopulation.append(population[i][1])
-            nextPopulation.append(population[i][2])
-        # currentDiversity += population[i][1] - population[i][2]
-    return nextPopulation
 
-#----------------------------------------------
+
+# ---------------------------------------------
+def chooseSurvivals(population: list):
+    """
+    Here, we sort the population according to the value cost of each gene
+    which is the third element of our list and calculate the most efficiency
+    case for buying the cars.
+    """
+    # population.sort(key=lambda x: x[2])
+    sorted(population, key=lambda x: (x[2], -x[1]))
+    print( 'ff: ', population)
+    # localMaximum = - initialMoney
+    # for i in range(0, len(population)):
+
+
+
+# ----------------------------------------------
 
 if __name__ == '__main__':
 
@@ -75,13 +87,8 @@ if __name__ == '__main__':
 
     print(listOfInputs)
     pop = calculateInitialPopulation(listOfInputs)
-    for i in range(0, 5):
+    for i in range(0, 1):
         pop = crossover(pop)
         pop = mutation(pop)
         pop = chooseSurvivals(pop)
     print(pop)
-
-
-
-
-
