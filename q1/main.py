@@ -94,11 +94,42 @@ def calcFitness(population: list, priceVal: list, initialMoney: int):
         if initialMoney >= 0:
             scores.append(efficiency)
         else:
-            scores.append('priceNeg')
-    return scores
+            scores.append(-1)
+    return populationWithIndex, scores
 #----------------------------------------
 
 def chooseSurvivals(populationWithIndex: list, scores: list):
+
+    """
+    First, we have to combine population list and scores in one list in order to sort them
+    according to the ascending scores as our survivals.
+    """
+    scoresList = []
+    for i in range(0, len(scores)):
+        cols = [scores[i]]
+        scoresList.append(cols)
+
+    listOfScoresAndPop = []
+    for i in range(0, len(populationWithIndex)):
+        listOfScoresAndPop.append(scoresList[i] + populationWithIndex[i])
+    listOfScoresAndPop.sort(key=lambda x: -x[0])
+
+
+    """
+    For the next generation, we remove the 20% of the worst and send others to crossover
+    for the next generation.
+    """
+    nextGeneration = []
+
+    for i in range(0, len(listOfScoresAndPop[0])-2):
+        listOfScoresAndPop.pop()
+
+    for i in range(0, len(listOfScoresAndPop)):
+        nextGeneration.append(listOfScoresAndPop[i][2:])
+
+    return nextGeneration
+
+# ----------------------------------------
 
 if __name__ == '__main__':
     initialMoney = input()
@@ -112,8 +143,12 @@ if __name__ == '__main__':
     for i in range(0, N):
         listOfInputs.append(list(map(int, input().split())))
 
+    finalVal = finalValue(listOfInputs)
     pop = initialPopulation(N)
     pop = crossover(pop)
     print('crossover: ', pop)
     pop = mutation(pop)
     print('mutation: ', pop)
+    popWithIndex, score = calcFitness(pop, finalVal, initialMoney)
+    result = chooseSurvivals(popWithIndex, score)
+    print(result)
