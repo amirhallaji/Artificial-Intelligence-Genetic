@@ -145,10 +145,13 @@ if __name__ == '__main__':
 
     finalVal = finalValue(listOfInputs)
     pop = initialPopulation(N)
-    pop = crossover(pop)
-    print('crossover: ', pop)
-    pop = mutation(pop)
-    print('mutation: ', pop)
-    popWithIndex, score = calcFitness(pop, finalVal, initialMoney)
-    result = chooseSurvivals(popWithIndex, score)
-    print(result)
+    for i in range(0, len(pop[0])):
+        pop = crossover(pop)
+        pop = mutation(pop)
+        popWithIndex, score = calcFitness(pop, finalVal, initialMoney)
+        pop = chooseSurvivals(popWithIndex, score)
+
+    for i in range(0, len(pop[0])):
+        print(pop[0][i], end='\n')
+
+
