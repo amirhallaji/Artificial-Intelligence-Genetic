@@ -28,10 +28,22 @@ def mutation(coefficients: list):
     return coefficients
 #----------------------------------
 
-def calc_fitness(population: list):
-    
+def calc_fitness(population: list, target: list):
+    error_values = []
+    for i in range(0, len(population)):
+        polynomial = np.polyval(population[i], len(population[i])-1)
+        error_values.append(polynomial - target[i])
+    return population, error_values
 
 #----------------------------------
+
+def choose_survivals(population: list, error_values: list):
+    pop_with_error = []
+    for i in range(0, len(population)):
+        pop_with_error.append(population[i] + error_values[i])
+
+    pop_with_error.sort(key=lambda x: -x[-1])
+    return pop_with_error
 
 if __name__ == '__main__':
 
@@ -42,3 +54,6 @@ if __name__ == '__main__':
     print(r)
     r = mutation(r)
     print(r)
+    r, main_v = calc_fitness(r, [1, 2, 3, 4, 5, 6])
+    print(r)
+    print(main_v)
