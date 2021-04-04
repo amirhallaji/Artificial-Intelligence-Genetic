@@ -1,6 +1,6 @@
 <p align='center'>
     <h2 align='center'>Jay Leno Garage</h2>
-    <img src="../icons/jayleno.jpg"></img>
+    <img src="icons/jayleno.jpg"></img>
 </p>
 
 This problem gives us some input as **price** and **value** and wants the best case in which the **value** is maximized. One important thing is that the money of the buyer should be much enough to buy the cars and this issue is checked in the code.
