@@ -32,7 +32,7 @@ def initialPopulation(N: int):
 
 def crossover(population: list):
     """
-    for crossover, we perform n-point crossover.
+    for crossover, we perform 1-point crossover.
     """
     offsprings = []
     randomFather = random.sample(range(0, len(population)), len(population))
