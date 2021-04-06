@@ -21,7 +21,7 @@ The last **20%** of the population are removed from the next generation.
 when the number of threats are **0**, we have reached convergence. We can also reach the maximum number of iterations to finish the program. 
 
 <img src='icons/10.png'></img>
-<p>result for 10*10</p>
+<p>result for 8*8</p>
 
 ### Source 
 The source code is here in [colab](https://colab.research.google.com/drive/1W56FIfJeZliSm6a0HNqngSnf-t_1Yl0u?usp=sharing)
