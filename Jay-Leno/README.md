@@ -7,16 +7,16 @@ This problem gives us some input as **price** and **value** and wants the best c
 
 ### Initial Population
 Depending on the number of inputs, I produce binary values(0 and 1) which are the final answers of our problem. **1** means **buy** and **0** means **don't buy**.
-If the length of the input is **n**, I produce **2^(N-1)** binary values randomly as our **genes**.
+If the length of the input is **n**, I produce **2^(N-1)** binary values randomly as our **chromosomes**. 
 
 ### Crossover
-For crossover, I chose 1-point crossover. The parents are selected randomly. The first half of the gene of the child is for father and the other half is from mother and new offsprings are generated in this way.
+For crossover, I chose 1-point crossover. The parents are selected randomly. The first half of one chromosome is combined with the other half of another random chromosome.
 
 ### Mutation
 For this, I chose Bit-Flipping, in which **1/n** genes of the population are selected and one of their bits are toggled randomly.
 
 ### Fitness function
-In this part, I gave each string of genes a score which is the value of the final cars in the garage. Addition to this, the budget of the buyer is checked here.
+In this part, I gave each chromosome a score which is the value of the final cars in the garage. Besides, the budget of the buyer is checked here.
 
 ### Choosing Survivals
 Now we have a list of genes with their score around them. For the next generation, I remove the last **20%** of the population, those with the least score.
