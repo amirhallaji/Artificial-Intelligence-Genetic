@@ -20,10 +20,12 @@ For this part, I save each **polynomial** and its **error** in a list and sort i
 ## Plots
 
 ### Chinese Birth
-degree 4
+
 <img src='plots/ch_b.png'></img>
-degree 11
+<p align='center'>degree 4</p>
+
 <img src='plots/ch_b_2.png'></img>
+<p align='center'>degree 11</p>
 
 
 ### Chinese Deaths
@@ -39,13 +41,20 @@ degree 11
 
 
 ### Malays Birth
-degree 4
 <img src='plots/ml_b.png'></img>
-degree 7
+<p align='center'>degree 4</p>
+
+
 <img src='plots/ml_b_2.png'></img>
-degree 13
+<p align='center'>degree 7</p>
+
+
 <img src='plots/ml_b_3.png'></img>
+<p align='center'>degree 13</p>
 
 
 ### Malays Death
 <img src='plots/ml_d.png'></img>
+
+
+**Note**: By increasing the degree, the results are so better, but I didn't increase it that much.
