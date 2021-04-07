@@ -1,4 +1,4 @@
-### The table below are the source code of some genetic algorithm problems imlpemented in python
+### Table below contains the source code of some genetic algorithm problems imlpemented in python.
 
 
 | Problem 	         | [Jay-Leno](Jay-Leno/) 	            | [Population Rate](Population-Rate) 	| [n-queen](n-queen) 	   |
